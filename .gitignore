@@ -142,3 +142,4 @@ dist
 .DS_Store
 /layers/.DS_Store
 /layers/
+/rarity_logs.txt
