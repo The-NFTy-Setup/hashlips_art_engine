@@ -34,8 +34,11 @@ layerConfigurations.forEach((config) => {
       layer.options?.["displayName"] != undefined
         ? layer.options?.["displayName"]
         : layer.name;
-    // don't include duplicate layers
-    if (!rarityData.includes(layer.name)) {
+        
+    if (rarityData[layerName] != null) {
+      rarityData[layerName] = rarityData[layerName].concat(elementsForLayer);  
+    }
+    else {
       // add elements for each layer to chart
       rarityData[layerName] = elementsForLayer;
     }
@@ -48,8 +51,8 @@ data.forEach((element) => {
   attributes.forEach((attribute) => {
     let traitType = attribute.trait_type;
     let value = attribute.value;
-
     let rarityDataTraits = rarityData[traitType];
+
     rarityDataTraits.forEach((rarityDataTrait) => {
       if (rarityDataTrait.trait == value) {
         // keep track of occurrences
@@ -75,6 +78,10 @@ for (var layer in rarityData) {
 // print out rarity data
 for (var layer in rarityData) {
   console.log(`Trait type: ${layer}`);
+  const uniqueArray = [...new Map(rarityData[layer].map((m) => [m.trait,m])).values()];
+  uniqueArray.sort((a,b) => (a.trait > b.trait) ? 1 : ((b.trait > a.trait) ? -1 : 0))
+  rarityData[layer] = uniqueArray;
+
   for (var trait in rarityData[layer]) {
     console.log(rarityData[layer][trait]);
   }
