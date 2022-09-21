@@ -6,7 +6,7 @@ const network = NETWORK.eth;
 
 // General metadata for Ethereum
 const namePrefix = "TogetherNFT";
-const description = "Remember to replace this description";
+const description = "TogetherNFT is a collection of 5,000 generative art pieces promoting empowerment, advocacy, and openness for all humans. Freedom, Love, Equality, Courage: TogetherNFT.";
 const baseUri = "ipfs://NewUriToReplace";
 
 const solanaMetadata = {
